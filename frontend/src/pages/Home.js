@@ -5,6 +5,7 @@ const Home = () => {
     return (
         <div>
             <Logo/>
+            <p>kd,,kdkdk</p>
         </div>
     );
 };
