@@ -9,7 +9,12 @@ const SignInForm = () => {
     const [password, setPassword] = useState('');
 
     const handleLogin = (e) => {
+
         e.preventDefault();
+
+        if(password === "" || email === ""){
+            alert("Veuillez remplir tous les champs s'il vous plaît")
+        } else  {
 
         axios({
             method: "post",
@@ -21,22 +26,21 @@ const SignInForm = () => {
             },
         })
             .then((res) =>{
-                if (res.data.errors) {
+                if (res.data.error) {
 
-                    alert(res.data.errors)
+                    alert(res.data)
 
                 }else {
                     alert('Connexion réussie')
-                    window.location = "/"
-                    console.log(res.data.token);
-                    console.log(res);
+                    // const token = res.data.token
+                   // window.location = "/"
                 }
             })
             .catch((err) => {
-                console.log(err);
-            })
+                alert("Paire identifiant/mot de passe incorrecte");
+            })}
 
-    };
+    }
 
 
     return (

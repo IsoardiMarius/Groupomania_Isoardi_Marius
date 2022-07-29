@@ -3,9 +3,8 @@ import Logo from "../components/Logo";
 
 const Home = () => {
     return (
-        <div>
-            <Logo/>
-            <p>kd,,kdkdk</p>
+        <div >
+            <Logo style={{marginTop:'50px'}}/>
         </div>
     );
 };
