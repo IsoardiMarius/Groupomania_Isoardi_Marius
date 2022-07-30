@@ -13,7 +13,7 @@ const SignInForm = () => {
         e.preventDefault();
 
         if(password === "" || email === ""){
-            alert("Veuillez remplir tous les champs s'il vous plaît")
+            alert("Pensez à bien remplir le champ email et mot de passe 😉")
         } else  {
 
         axios({
@@ -56,7 +56,7 @@ const SignInForm = () => {
                 <form onSubmit={handleLogin}>
                     <input type="text" placeholder="Email" onChange={(e) => setEmail(e.target.value)} value={email}/>
                     <br/>
-                    <input type="text" placeholder="Mot de passe" onChange={(e) => setPassword(e.target.value)}
+                    <input type="password" placeholder="Mot de passe" onChange={(e) => setPassword(e.target.value)}
                            value={password}/>
                     <br/>
                     <button type='submit'> SE CONNECTER</button>

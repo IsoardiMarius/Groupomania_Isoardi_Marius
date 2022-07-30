@@ -8,45 +8,59 @@ const SignUpForm = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [passwordCheck, setPasswordCheck] = useState('');
+
     const [nom, setNom] = useState('');
     const [prenom, setPrenom] = useState('');
     const [pseudo, setPseudo] = useState('');
+    let strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})");
+    let testPassword = strongRegex.test(password);
 
 
     const handleLogin = (e) => {
         e.preventDefault();
 
-        axios({
-            method: "post",
-            url:"http://localhost:4000/api/auth/signup",
-            credentials: true,
-            data: {
-                nom,
-                prenom,
-                pseudo,
-                email,
-                password
-            },
-        })
-            .then((res) =>{
-                if (res.data.errors) {
+        if (nom === "" || prenom === "" || pseudo === "" || password === "" || email === "") {
+            alert("Pensez à bien remplir tous les champs du formulaire 😉");
 
-                    alert(res.data.errors)
 
-                }else {
 
-                    window.location = "/signin"
+        } else if (!testPassword) {
+            alert("Le mot de passe doit comprendre 8 caractères dont deux chiffre, sans espaces. Ainsi qu'une lettre majuscule et minuscule.");
+        }
 
-                }
+        else if (passwordCheck !== password){
+            alert('Veuillez confirmer votre mot de passe')
+        }
+
+
+
+
+        else
+
+            axios({
+                method: "post", url: "http://localhost:4000/api/auth/signup", credentials: true, data: {
+                    nom, prenom, pseudo, email, password
+                },
             })
-            .catch((err) => {
-                alert(err);
-            })
+                .then((res) => {
+
+                    if (res.data === "Le format de l'email est incorrect.") {
+                        alert(res.data);
+                    } else {
+                        alert('Votre compte à bien était créer, vous aller être redirigé vers la page de connexion');
+                    }
+
+
+                })
+                .catch((err) => {
+                    alert(err);
+                    console.log('err');
+                });
 
     };
 
     return (
-
 
 
         <div className="card-login" style={{marginTop: "-247px"}}>
@@ -56,7 +70,7 @@ const SignUpForm = () => {
             </div>
 
             <div className="form-login" style={{height: '1000px'}}>
-                <p className='title'>PAGE DE CONNEXION</p>
+                <p className="title">PAGE DE CONNEXION</p>
                 <form action="" onSubmit={handleLogin}>
 
                     <input type="text" placeholder="Nom" onChange={(e) => setNom(e.target.value)}
@@ -65,23 +79,26 @@ const SignUpForm = () => {
                     <input type="text" placeholder="Prénom" onChange={(e) => setPrenom(e.target.value)}
                            value={prenom}/>
                     <br/>
-                    <input type="text" placeholder="Pseudo"onChange={(e) => setPseudo(e.target.value)}
+                    <input type="text" placeholder="Pseudo" onChange={(e) => setPseudo(e.target.value)}
                            value={pseudo}/>
                     <br/>
                     <input type="text" placeholder="Email" onChange={(e) => setEmail(e.target.value)}
                            value={email}/>
                     <br/>
-                    <input type="text" placeholder="Mot de passe" onChange={(e) => setPassword(e.target.value)}
+                    <input type="password" placeholder="Mot de passe" onChange={(e) => setPassword(e.target.value)}
                            value={password}/>
+                    <input type="password" placeholder="Confirmer votre mot de passe" onChange={(e) => setPasswordCheck(e.target.value)}
+                           value={passwordCheck}/>
                     <br/>
-                    <button type='submit'> S'INSCRIRE</button>
-                    <p className='txt-password'>Votre mot de passe doit comporter au moins 8 caractères, dont au moins une majuscule, une minuscule, et deux chiffres.
+                    <button type="submit"> S'INSCRIRE</button>
+                    <p className="txt-password">Votre mot de passe doit comporter au moins 8 caractères, dont au moins
+                        une majuscule, une minuscule, et deux chiffres.
                     </p>
                     <hr className="police-separator"/>
                     <p>Vous avez déjà un compte ?</p>
                     <NavLink to="/signin">
-                    <button>SE CONNECTER</button>
-                        </NavLink>
+                        <button>SE CONNECTER</button>
+                    </NavLink>
 
                 </form>
             </div>

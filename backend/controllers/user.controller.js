@@ -10,7 +10,6 @@ exports.signup = (req, res, next) => {
 
     const ValidateEmail = validator.validate(req.body.email);
     if (!ValidateEmail) {
-        res.status(400)
         res.end("Le format de l'email est incorrect.");
     } else {
 
