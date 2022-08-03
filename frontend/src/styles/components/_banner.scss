@@ -1,0 +1,28 @@
+// Banner de la page home
+
+.banner {
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+}
+
+.logo {
+  width: 290px;
+  margin: auto;
+}
+
+.disconnect-icon {
+  text-align: center;
+}
+
+.text-icon {
+  background-color: aliceblue;
+  width: 200px;
+  margin: auto;
+  border-radius: 30px;
+  padding: 10px 5px;
+  color: #b2a6f6;
+  font-weight: bold;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
