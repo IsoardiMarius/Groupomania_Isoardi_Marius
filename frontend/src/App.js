@@ -7,11 +7,13 @@ import {useState} from "react";
 
 
 const App = () => {
+    // On crée notre variable pour useContext
 
     const [currentUser, setCurrentUser] = useState("")
     return (
+        // On passe ses paramètres à chaque composant
         <DataProvider value={{currentUser,setCurrentUser}}>
-
+            {/*On créer nos différentes routes pour nos 3 pages*/}
             <BrowserRouter>
                 <Routes>
                     <Route path="/signin" element={<SignInForm/>}/>

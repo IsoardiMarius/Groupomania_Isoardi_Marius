@@ -8,17 +8,19 @@ import logo from "../assets/images/icon-left-font-monochrome-white.png";
 
 const SignInForm = () => {
 
-    const {currentUser,setCurrentUser} = useContext(userContext)
-    //Contrôle des champs du formulaire
+    const {currentUser, setCurrentUser} = useContext(userContext);
+    //Écoute des champs du formulaire
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    //Fonction qui va renvoyer les données vers l'api
     const handleLogin = (e) => {
 
         e.preventDefault();
-
+        //On vérifie que les champs ne soient pas vides
         if (password === "" || email === "") {
             alert("Pensez à bien remplir le champ email et mot de passe 😉");
+            // On envoie l'email et le password a la DB
         } else {
 
             axios({
@@ -27,19 +29,15 @@ const SignInForm = () => {
                 },
             })
                 .then((res) => {
-                    if (res.data.error) {
 
-                        alert(res.data);
-
-                    } else {
-                        console.log(res.data);
                         alert('Connexion réussie');
-                        setCurrentUser(res.data)
-                        // const token = res.data.token
-                        window.location = "/"
-                        localStorage.setItem("productCart", JSON.stringify(res.data))
+                        // On stock le token et userId pour useContext
+                        setCurrentUser(res.data);
+                        window.location = "/";
+                        // On stock le token et userId dans le localstorage
+                        localStorage.setItem("productCart", JSON.stringify(res.data));
 
-                    }
+
                 })
                 .catch((err) => {
                     alert("Paire identifiant/mot de passe incorrecte");
@@ -60,7 +58,9 @@ const SignInForm = () => {
 
             <div className="form-login">
                 <p className="title">CONNEXION</p>
+                {/*On passe la fonction qui contrôle et envoie les données à l'api*/}
                 <form onSubmit={handleLogin}>
+                    {/*On écoute les inputs*/}
                     <input type="text" placeholder="Email" onChange={(e) => setEmail(e.target.value)} value={email}/>
                     <br/>
                     <input type="password" placeholder="Mot de passe" onChange={(e) => setPassword(e.target.value)}

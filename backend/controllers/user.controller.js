@@ -2,29 +2,26 @@
 const bcrypt = require('bcrypt');
 // Permet de créer un token
 const jwt = require('jsonwebtoken');
-const userController = require('../models/user.model');
-const validator = require("email-validator")
+const userModel = require('../models/user.model');
 
-// Créer un userController
+// Créer un userModel
 exports.signup = (req, res, next) => {
 
-    const ValidateEmail = validator.validate(req.body.email);
-    if (!ValidateEmail) {
-        res.end("Le format de l'email est incorrect.");
-    } else {
+
 
 
         // On crypte le mot de passe
         bcrypt.hash(req.body.password, 10)
             .then(hash => {
-                const newUser = new userController({
+                const newUser = new userModel({
                     nom: req.body.nom,
                     prenom: req.body.prenom,
                     pseudo: req.body.pseudo,
                     email: req.body.email,
-                    password: hash
+                    password: hash,
+                    isAdmin: false
                 });
-                // On sauvegarde userController dans la base de donnée
+                // On sauvegarde userModel dans la base de donnée
                 newUser.save()
                     .then(res.status(201).json({message: 'Utilisateur crée !'}))
                     .catch(error => res.status(400).json({error}));
@@ -32,11 +29,11 @@ exports.signup = (req, res, next) => {
 
             })
             .catch(error => res.status(500).json({error}));
-    }}
+    }
 // Connection
     exports.login = (req, res, next) => {
         //On récupère l'utilisateur dans la base de donnée
-        userController.findOne({email: req.body.email})
+        userModel.findOne({email: req.body.email})
             .then(user => {
                 if (user === null) {
                     console.log(user)

@@ -47,7 +47,7 @@ const SignUpForm = () => {
                     nom, prenom, pseudo, email, password
                 },
             })
-                // Si la base de donnée à créer l'utilisateur ont envoie un message
+                // Si la base de donnée à créer l'utilisateur ont envoie un message, et on redirige vers la page d'inscription
                 .then((res) => {
 
                         console.log(res.data);
@@ -75,13 +75,15 @@ const SignUpForm = () => {
                 <img src={logo} alt="Logo groupomania" className="logo"/>
             </div>
 
-            <p>Renforcer votre esprit d'équipe </p>
+            <p className='text-logo'>Renforcer votre esprit d'équipe </p>
 
 
             <div className="form-login" style={{height: '1000px'}}>
                 <p className="title">INSCRIPTION</p>
+                {/*On passe la fonction handleLogin au submit du formulaire,
+                pour envoyer toutes les donnés à l'API*/}
                 <form action="" onSubmit={handleLogin}>
-
+                    {/*On écoute tous les champs*/}
                     <input type="text" placeholder="Nom" onChange={(e) => setNom(e.target.value)}
                            value={nom}/>
                     <br/>
@@ -105,7 +107,7 @@ const SignUpForm = () => {
                         une majuscule, une minuscule, et deux chiffres.
                     </p>
                     <hr className="police-separator"/>
-                    <p>Vous avez déjà un compte ?</p>
+                    <p >Vous avez déjà un compte ?</p>
                     <NavLink to="/signin">
                         <button>SE CONNECTER</button>
                     </NavLink>

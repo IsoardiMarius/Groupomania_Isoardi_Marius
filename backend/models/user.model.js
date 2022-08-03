@@ -12,6 +12,7 @@ const userSchema = new mongoose.Schema(
         pseudo: {type: String, required: true, unique: true, minLength: 3, maxLength: 55},
         email: {type: String, required: true, unique: true, lowercase: true},
         password: {type: String, required: true},
+        isAdmin: {type: Boolean, required:true}
     },
     {
         timestamps: true
@@ -20,4 +21,4 @@ const userSchema = new mongoose.Schema(
 
 userSchema.plugin(uniqueValidator);
 // On exporte le modèle pour les controllers
-module.exports = mongoose.model('utilisateur', userSchema);
+module.exports = mongoose.model('user', userSchema);
