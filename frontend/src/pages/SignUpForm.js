@@ -49,7 +49,6 @@ const SignUpForm = () => {
                         alert(res.data);
                     } else {
                         alert('Votre compte à bien était créer, vous aller être redirigé vers la page de connexion');
-                        window.location = "/signin"
                     }
 
 
@@ -74,7 +73,7 @@ const SignUpForm = () => {
                 <p className="title">PAGE DE CONNEXION</p>
                 <form action="" onSubmit={handleLogin}>
 
-                    <input type="name" placeholder="Nom" onChange={(e) => setNom(e.target.value)}
+                    <input type="text" placeholder="Nom" onChange={(e) => setNom(e.target.value)}
                            value={nom}/>
                     <br/>
                     <input type="text" placeholder="Prénom" onChange={(e) => setPrenom(e.target.value)}

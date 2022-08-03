@@ -3,21 +3,6 @@ import logo from "../assets/images/icon.500ae8c5.png";
 import {NavLink} from "react-router-dom";
 import axios from "axios";
 
-
-///////  Mettre à jour les produis présent dans le localstorage ///////
-function tokenToLocalStorage(token) {
-    localStorage.setItem("token", JSON.stringify(token))
-
-}
-
-
-//////  Récupérer le tableau des produits présent dans le localstorage //////
-function getProductsFromLocalStorage() {
-    const token = localStorage.getItem("token")
-
-    return JSON.parse(token)
-}
-
 const SignInForm = () => {
 
     const [email, setEmail] = useState('');
@@ -27,8 +12,7 @@ const SignInForm = () => {
 
         e.preventDefault();
 
-
-          if(password === "" || email === ""){
+        if(password === "" || email === ""){
             alert("Pensez à bien remplir le champ email et mot de passe 😉")
         } else  {
 
@@ -42,16 +26,12 @@ const SignInForm = () => {
             },
         })
             .then((res) =>{
-
                 if (res.data.error) {
 
                     alert(res.data)
 
                 }else {
                     alert('Connexion réussie')
-                    console.log(res.data);
-                    tokenToLocalStorage(res.data)
-                    console.log(getProductsFromLocalStorage());
                     // const token = res.data.token
                    // window.location = "/"
                 }
