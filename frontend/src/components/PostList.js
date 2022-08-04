@@ -1,9 +1,12 @@
 import React from 'react';
 import CardPost from "../components/CardPost";
+import CreatePost from "./CreatePost";
 
 const PostList = () => {
-    return (<div>
+    return (<main>
             <div className="post-list">
+                <CreatePost/>
+
 
                 <CardPost/>
                 <CardPost/>
@@ -14,7 +17,7 @@ const PostList = () => {
 
 
             </div>
-        </div>);
+        </main>);
 };
 
 export default PostList;

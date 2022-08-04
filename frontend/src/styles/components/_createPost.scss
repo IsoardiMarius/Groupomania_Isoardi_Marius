@@ -1,0 +1,35 @@
+.create-post {
+  width: 90%;
+  margin: auto;
+  margin-bottom: 35px;
+  background-color: white;
+  border: solid 0 white;
+  padding: 15px 0;
+  font-size: 12px;
+  max-width: 450px;
+  border-radius: 3px;
+}
+
+.create-post-redaction {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.create-post-profil-picture {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+
+.create-post-input {
+  width: 80%;
+  border-radius: 30px;
+  border: solid 1px rgba(148, 147, 147, 0.48);
+  padding: 10px;
+
+  &:focus {
+    outline: 1px solid #b2a6f6 !important;
+
+  }
+}

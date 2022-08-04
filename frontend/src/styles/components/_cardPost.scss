@@ -5,13 +5,11 @@
   margin: auto;
   margin-bottom: 35px;
   background-color: white;
-  border-radius: 10px;
-  border:solid 3px #e9e7ff;
+  border: solid 0 white;
   padding: 15px 0;
-  text-align: center;
   font-size: 12px;
   max-width: 450px;
-  position: relative;
+  border-radius: 3px;
 }
 
 .card-img {
@@ -37,8 +35,33 @@
 }
 
 .card-date {
-  color: #7c7c7c;
+  color: #6c6c6c;
 }
 
-@media only screen and (max-height: 744px) {
+.card-text {
+  padding: 0 15px 10px 15px;
+}
+
+
+.card-logo {
+  display: flex;
+  justify-content: flex-start;
+  font-size: 18px;
+  margin-left: 10px;
+}
+
+.fa-heart, .fa-comment, .fa-retweet {
+
+  padding: 5px;
+  cursor: pointer;
+  color: #afafd0;
+
+}
+
+@media only screen and (max-width: 744px) {
+
+  .card-post{
+    width: 100%;
+  }
+
 }
