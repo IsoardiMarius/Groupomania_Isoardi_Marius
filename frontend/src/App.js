@@ -4,6 +4,7 @@ import SignUpForm from "./pages/SignUpForm";
 import SignInForm from "./pages/SignInForm";
 import {DataProvider} from "./context/UserContext";
 import {useState} from "react";
+import Cardtest from "./pages/Cardtest";
 
 
 const App = () => {
@@ -19,6 +20,9 @@ const App = () => {
                     <Route path="/signin" element={<SignInForm/>}/>
                     <Route path="/signup" element={<SignUpForm/>}/>
                     <Route path="/" element={<Home/>}/>
+                    <Route path="/test" element={<Cardtest/>}/>
+
+
 
 
                 </Routes>
