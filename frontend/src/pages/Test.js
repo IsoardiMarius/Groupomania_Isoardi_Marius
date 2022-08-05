@@ -6,7 +6,7 @@ import PostList from "../components/PostList";
 import {useNavigate} from "react-router-dom";
 
 
-const Home = () => {
+const Test = () => {
 
     return (
         <div>
@@ -16,6 +16,6 @@ const Home = () => {
     );
 };
 
-export default Home;
+export default Test;
 
 

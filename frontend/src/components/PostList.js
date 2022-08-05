@@ -6,8 +6,6 @@ const PostList = () => {
     return (<main>
             <div className="post-list">
                 <CreatePost/>
-
-
                 <CardPost/>
                 <CardPost/>
                 <CardPost/>

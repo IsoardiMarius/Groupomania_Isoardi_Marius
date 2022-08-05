@@ -14,9 +14,9 @@ exports.createPost = (req, res, next) => {
         likes: 0,
         userLiked: [],
         // On récupère le protocole de la requête : HTTP, on récupère l'ôte du serveur : 'localhost:3000', et le nom du fichier
-        //imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+        imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
     });
-    // On sauvegarde l'objet dans la base de donnée
+    // On sauvegarde l'objet dans la base de donnée,
     post.save()
         .then(() => { res.status(201).json({message: 'Post enregistré !'})})
         .catch(error => { res.status(400).json( { error })})

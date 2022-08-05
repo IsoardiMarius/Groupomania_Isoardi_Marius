@@ -4,7 +4,7 @@ import SignUpForm from "./pages/SignUpForm";
 import SignInForm from "./pages/SignInForm";
 import {DataProvider} from "./context/UserContext";
 import {useState} from "react";
-import Cardtest from "./pages/Cardtest";
+import Test from "./pages/Test";
 
 
 const App = () => {
@@ -14,13 +14,13 @@ const App = () => {
     return (
         // On passe ses paramètres à chaque composant
         <DataProvider value={{currentUser,setCurrentUser}}>
-            {/*On créer nos différentes routes pour nos 3 pages*/}
+            {/*On crée nos différentes routes pour nos 3 pages*/}
             <BrowserRouter>
                 <Routes>
                     <Route path="/signin" element={<SignInForm/>}/>
                     <Route path="/signup" element={<SignUpForm/>}/>
                     <Route path="/" element={<Home/>}/>
-                    <Route path="/test" element={<Cardtest/>}/>
+                    <Route path="/test" element={<Test/>}/>
 
 
 

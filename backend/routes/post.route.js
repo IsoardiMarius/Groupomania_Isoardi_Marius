@@ -11,10 +11,10 @@ router.put('/:id',auth, multer, PostCtrl.modifyPost);
 
 router.delete('/:id',auth, PostCtrl.deletePost);
 
-router.get('/:id',auth, PostCtrl.getOnePost);
+router.get('/:id', auth, PostCtrl.getOnePost);
 
 router.get('/',auth, PostCtrl.getAllPost);
 
-router.post('/:id/like', auth, PostCtrl.likePost);
+router.post('/:id/like',auth, PostCtrl.likePost);
 
 module.exports = router;

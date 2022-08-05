@@ -4,7 +4,7 @@
   margin-bottom: 35px;
   background-color: white;
   border: solid 0 white;
-  padding: 15px 0;
+  padding: 15px 0 10px;
   font-size: 12px;
   max-width: 450px;
   border-radius: 3px;
@@ -14,6 +14,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  align-items: center;
 }
 
 .create-post-profil-picture {
@@ -26,10 +27,84 @@
   width: 80%;
   border-radius: 30px;
   border: solid 1px rgba(148, 147, 147, 0.48);
-  padding: 10px;
+  padding: 20px;
+  resize: none;
+  overflow: visible;
 
   &:focus {
     outline: 1px solid #b2a6f6 !important;
 
+
   }
+
+  &::placeholder {
+    text-align: center;
+    position: absolute;
+    top: 20px;
+    left: 70px;
+  }
+}
+
+.create-post-footer {
+  display: flex;
+  justify-content: center;
+  padding: 15px 0 0 15px;
+}
+
+.create-post-button {
+  display: flex;
+  justify-content: space-between;
+  height: 30px;
+  align-items: center;
+  margin-right: 30px;
+  font-size: 14px;
+  padding: 10px;
+  background-color: white;
+  outline: none;
+  border: none;
+  border-radius: 3px;
+
+  &:hover {
+    background: rgba(148, 147, 147, 0.2);
+  ;
+  }
+}
+
+.fa-youtube {
+  color: #ff7a5a;
+}
+
+.fa-image {
+  color: green;
+}
+
+.fa-share {
+  color: rgba(87, 87, 248, 0.86);
+}
+.create-post-footer-text {
+  margin-left: 8px;
+  font-weight: 600;
+  color: #525252 ;
+  opacity: 0.8;
+
+}
+
+
+@media only screen and (max-width: 744px) {
+  .create-post {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 435px) {
+
+.create-post-button {
+  margin-right: 6px;
+}
+
+
+  .create-post-footer-text {
+    font-size: 12px;
+  }
+
 }

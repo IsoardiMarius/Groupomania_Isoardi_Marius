@@ -9,9 +9,8 @@ const CardPost = () => {
                 <p className="card-date">September 14, 2016</p>
             </div>
             <img src={img} alt="" className="card-img"/>
-            <p className="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam aliquid
-                aspernatur commodi delectus ea
-                eligendi facilis fuga illum impedit ipsa laboriosam nam officia. </p>
+            <p className="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, aperiam aspernatur
+                laudantium quam ratione reprehenderit similique. Corporis error hic ipsa, optio quae qua rofi consectetur aperiam !</p>
             <div className="card-logo">
                 <i className="fa-regular fa-heart"></i>
                 <i className="fa-regular fa-comment"></i>

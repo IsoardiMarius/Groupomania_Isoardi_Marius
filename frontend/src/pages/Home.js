@@ -8,19 +8,30 @@ import {useNavigate} from "react-router-dom";
 
 const Home = () => {
     let navigate = useNavigate();
+    let user = JSON.parse(localStorage.getItem('productCart'));
+    // let token = JSON.parse(user.token)
+    console.log(user);
     useEffect(() => {
-        if (!localStorage.getItem('token')) {
-            navigate("/signin")
-        }
+        if (!user) {
+            console.log("Pas de token");
+            navigate("/signin");
+        } else {
+            console.log("Token Ok");
+            navigate('/')
+            // ALLER CHERCHER TOUS LES POST DANS LA DB
 
-        // ALLER CHERCHER TOUS LES POST DANS LA DB
+
+        }
     }, [useNavigate]);
     return (
+
         <div>
             <Banner/>
             <PostList/>
         </div>
+
     );
+
 };
 
 export default Home;

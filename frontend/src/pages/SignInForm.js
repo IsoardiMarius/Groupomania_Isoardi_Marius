@@ -5,6 +5,8 @@ import {userContext} from '../context/UserContext';
 import {NavLink} from "react-router-dom";
 import axios from "axios";
 import logo from "../assets/images/icon-left-font-monochrome-white.png";
+import {useNavigate} from "react-router-dom";
+
 
 const SignInForm = () => {
 
@@ -12,6 +14,8 @@ const SignInForm = () => {
     //Écoute des champs du formulaire
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    let navigate = useNavigate();
+
 
     //Fonction qui va renvoyer les données vers l'api
     const handleLogin = (e) => {
@@ -30,12 +34,14 @@ const SignInForm = () => {
             })
                 .then((res) => {
 
-                        alert('Connexion réussie');
                         // On stock le token et userId pour useContext
                         setCurrentUser(res.data);
-                        window.location = "/";
                         // On stock le token et userId dans le localstorage
+                    console.log(res.data);
                         localStorage.setItem("productCart", JSON.stringify(res.data));
+                    alert('Connexion réussie');
+                    navigate('/')
+
 
 
                 })
