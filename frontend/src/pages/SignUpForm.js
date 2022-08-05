@@ -4,9 +4,13 @@ import React, {useState} from 'react';
 import {NavLink} from "react-router-dom";
 import axios from "axios";
 import logo from "../assets/images/icon-left-font-monochrome-white.png";
+import {useNavigate} from "react-router-dom";
+
 
 
 const SignUpForm = () => {
+
+    const navigate = useNavigate()
 
     //Contrôle des champs du formulaire
     const [email, setEmail] = useState('');
@@ -52,7 +56,7 @@ const SignUpForm = () => {
 
                         console.log(res.data);
                         alert('Votre compte à bien était créer, vous aller être redirigé vers la page de connexion');
-                        window.location = "/signin"
+                        navigate('/signin')
 
 
 
