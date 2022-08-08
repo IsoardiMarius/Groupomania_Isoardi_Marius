@@ -10,15 +10,11 @@ const Home = () => {
     let navigate = useNavigate();
     let user = JSON.parse(localStorage.getItem('productCart'));
     // let token = JSON.parse(user.token)
-    console.log(user);
     useEffect(() => {
         if (!user) {
-            console.log("Pas de token");
             navigate("/signin");
         } else {
-            console.log("Token Ok");
             navigate('/')
-            // ALLER CHERCHER TOUS LES POST DANS LA DB
 
 
         }

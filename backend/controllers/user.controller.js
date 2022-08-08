@@ -23,7 +23,8 @@ exports.signup = (req, res, next) => {
                 });
                 // On sauvegarde userModel dans la base de donnée
                 newUser.save()
-                    .then(res.status(201).json({message: 'Utilisateur crée !'}))
+                    .then(res.status(201).json({message: 'Utilisateur crée !'})
+                    )
                     .catch(error => res.status(400).json({error}));
 
 
@@ -62,3 +63,9 @@ exports.signup = (req, res, next) => {
             })
             .catch(error => res.status(500).json({error}));
     };
+
+exports.getOneUser = (req, res, next) => {
+    userModel.findOne({_id: req.body.userId}).select('-password -email')
+        .then(post => res.status(200).json(post))
+        .catch(error => res.status(404).json({error}))
+}

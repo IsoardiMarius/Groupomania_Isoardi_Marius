@@ -37,7 +37,6 @@ const SignInForm = () => {
                         // On stock le token et userId pour useContext
                         setCurrentUser(res.data);
                         // On stock le token et userId dans le localstorage
-                    console.log(res.data);
                         localStorage.setItem("productCart", JSON.stringify(res.data));
                     alert('Connexion réussie');
                     navigate('/')

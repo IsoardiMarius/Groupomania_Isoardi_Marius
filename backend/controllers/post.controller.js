@@ -6,7 +6,7 @@ const fs = require('fs');
 
 ///// On crée un objet dans la base de donnée
 exports.createPost = (req, res, next) => {
-    const postObject = JSON.parse(req.body.post);
+    const postObject = req.body;
     delete postObject._id;
     const post = new Post({
         // On colle l'objet présent dans la requête
@@ -14,7 +14,7 @@ exports.createPost = (req, res, next) => {
         likes: 0,
         userLiked: [],
         // On récupère le protocole de la requête : HTTP, on récupère l'ôte du serveur : 'localhost:3000', et le nom du fichier
-        imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+        //imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
     });
     // On sauvegarde l'objet dans la base de donnée,
     post.save()

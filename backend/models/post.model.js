@@ -8,7 +8,8 @@ const uniqueValidator = require('mongoose-unique-validator');
 const postSchema = new mongoose.Schema(
     {
         userId: {type:String, required:true},
-        pseudo: {type: String, required: true, unique: true, minLength: 3, maxLength: 55},
+        nom: {type: String, required: true, minLength: 3, maxLength: 55},
+        prenom: {type: String, required: true, minLength: 3, maxLength: 55},
         description: {type:String, required: true,maxLength: 500},
         imageUrl: {type:String},
         likes: {type:Number},

@@ -15,16 +15,34 @@ const Banner = () => {
         localStorage.removeItem('productCart')
         navigate('/signin')
     }
+    const news = (e) => {
+        e.preventDefault()
+        navigate('/')
+    }
+
+    const myPosts = (e) => {
+        e.preventDefault()
+        navigate('/')
+    }
 
 
     return (
         <header>
         <div className="banner">
             <img src={logo} alt="Logo groupomania" className="logo"/>
-            <div className="disconnect-icon" onClick={logout}>
-                <p className="text-icon">Déconnexion</p>
-            </div>
+
         </div>
+            <div className="button-div">
+            <div className="disconnect-icon" onClick={logout}>
+                <button className="button-banner">Déconnexion</button>
+            </div>
+            <div className="disconnect-icon" onClick={news}>
+                <button className="button-banner">Fil d'actualité</button>
+            </div>
+                <div className="disconnect-icon" onClick={myPosts}>
+                    <button className="button-banner">Mes postes</button>
+                </div>
+            </div>
     </header>
 
     );
