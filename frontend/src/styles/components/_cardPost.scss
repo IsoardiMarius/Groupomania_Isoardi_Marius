@@ -10,6 +10,7 @@
   font-size: 12px;
   max-width: 450px;
   border-radius: 3px;
+  position: relative;
 }
 
 .card-img {
@@ -56,6 +57,23 @@
   cursor: pointer;
   color: #afafd0;
 
+}
+
+.like {
+  color: #d437f6 !important;
+}
+
+.modify {
+  position: absolute;
+  margin-top: 3px;
+  right: 10px;
+  border-color: #afafd0!important;
+  background: white;
+  padding: 2px;
+  font-size: 12px;
+  outline: white;
+  color: #9999d9;
+  font-weight: 600;
 }
 
 @media only screen and (max-width: 744px) {

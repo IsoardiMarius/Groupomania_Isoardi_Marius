@@ -9,7 +9,6 @@ import {useNavigate} from "react-router-dom";
 const Home = () => {
     let navigate = useNavigate();
     let user = JSON.parse(localStorage.getItem('productCart'));
-    // let token = JSON.parse(user.token)
     useEffect(() => {
         if (!user) {
             navigate("/signin");

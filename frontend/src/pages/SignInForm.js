@@ -1,7 +1,6 @@
 //// Formulaire de connexion /////
 
-import React, {useContext, useState} from 'react';
-import {userContext} from '../context/UserContext';
+import React, {useState} from 'react';
 import {NavLink} from "react-router-dom";
 import axios from "axios";
 import logo from "../assets/images/icon-left-font-monochrome-white.png";
@@ -10,7 +9,6 @@ import {useNavigate} from "react-router-dom";
 
 const SignInForm = () => {
 
-    const {currentUser, setCurrentUser} = useContext(userContext);
     //Écoute des champs du formulaire
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -35,7 +33,6 @@ const SignInForm = () => {
                 .then((res) => {
 
                         // On stock le token et userId pour useContext
-                        setCurrentUser(res.data);
                         // On stock le token et userId dans le localstorage
                         localStorage.setItem("productCart", JSON.stringify(res.data));
                     alert('Connexion réussie');

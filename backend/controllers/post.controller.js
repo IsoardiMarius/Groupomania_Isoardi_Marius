@@ -7,12 +7,12 @@ const fs = require('fs');
 ///// On crée un objet dans la base de donnée
 exports.createPost = (req, res, next) => {
     const postObject = req.body;
-    delete postObject._id;
+    console.log(req.body);
     const post = new Post({
         // On colle l'objet présent dans la requête
         ...postObject,
         likes: 0,
-        userLiked: [],
+        usersLiked: [],
         // On récupère le protocole de la requête : HTTP, on récupère l'ôte du serveur : 'localhost:3000', et le nom du fichier
         //imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
     });
@@ -96,9 +96,10 @@ exports.getAllPost = (req, res, next) => {
 
 // L'utilisateur aime / n'aime pas une post
 exports.likePost = (req, res, next) => {
-    const postId = req.params.id;
+    const postId = req.body.id;
     const userId = req.body.userId;
     const like = req.body.like;
+
     // L'utilisateur aime une post pour la première fois (like === 1)
     // On incrémente + 1 au nombre de like, et on push le userId dans le tableau userLiked
     if (like === 1) {

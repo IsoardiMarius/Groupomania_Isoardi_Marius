@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 const userModel = require('../models/user.model');
 
 // Créer un userModel
+// Créer un user
 exports.signup = (req, res, next) => {
 
 
@@ -16,15 +17,15 @@ exports.signup = (req, res, next) => {
                 const newUser = new userModel({
                     nom: req.body.nom,
                     prenom: req.body.prenom,
-                    pseudo: req.body.pseudo,
                     email: req.body.email,
                     password: hash,
                     isAdmin: false
                 });
-                // On sauvegarde userModel dans la base de donnée
+                // On sauvegarde user dans la base de donnée
                 newUser.save()
-                    .then(res.status(201).json({message: 'Utilisateur crée !'})
-                    )
+                    .then((res) => {
+                        console.log(res);
+                    })
                     .catch(error => res.status(400).json({error}));
 
 
@@ -65,7 +66,7 @@ exports.signup = (req, res, next) => {
     };
 
 exports.getOneUser = (req, res, next) => {
-    userModel.findOne({_id: req.body.userId}).select('-password -email')
+    userModel.findOne({_id: req.query.userId}).select('-password -email')
         .then(post => res.status(200).json(post))
         .catch(error => res.status(404).json({error}))
 }

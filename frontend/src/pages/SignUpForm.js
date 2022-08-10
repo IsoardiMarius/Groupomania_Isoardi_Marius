@@ -2,23 +2,19 @@
 
 import React, {useState} from 'react';
 import {NavLink} from "react-router-dom";
-import axios from "axios";
 import logo from "../assets/images/icon-left-font-monochrome-white.png";
 import {useNavigate} from "react-router-dom";
 
 
-
 const SignUpForm = () => {
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     //Contrôle des champs du formulaire
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [nom, setNom] = useState('');
     const [prenom, setPrenom] = useState('');
-    const [pseudo, setPseudo] = useState('');
-
     //Controle de la sécurité du password
     const [passwordCheck, setPasswordCheck] = useState('');
 
@@ -31,7 +27,7 @@ const SignUpForm = () => {
         e.preventDefault();
 
         // On vérifie que tous les champs ne soit pas vides
-        if (nom === "" || prenom === "" || pseudo === "" || password === "" || email === "") {
+        if (nom === "" || prenom === "" || password === "" || email === "") {
             alert("Pensez à bien remplir tous les champs du formulaire 😉");
 
 
@@ -46,81 +42,92 @@ const SignUpForm = () => {
             // Si tout est bon on fait envoie nos informations à la base de donnée
         } else
 
-            axios({
-                method: "post", url: "http://localhost:4000/api/auth/signup", credentials: true, data: {
-                    nom, prenom, pseudo, email, password
+            fetch("http://localhost:4000/api/auth/signup", {
+                method: "post",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+
                 },
+
+                //make sure to serialize your JSON body
+                body: JSON.stringify({
+                    nom,
+                    prenom,
+                    email,
+                    password
+                }),
+
+
             })
-                // Si la base de donnée à créer l'utilisateur ont envoie un message, et on redirige vers la page d'inscription
                 .then((res) => {
 
-                        console.log(res.data);
-                        alert('Votre compte à bien était créer, vous aller être redirigé vers la page de connexion');
                         navigate('/signin')
+                        alert('Vous allez être redirigé vers la page de connexion ')
 
 
 
                 })
-                // S'il y a une erreur, on affiche le message d'erreur
                 .catch((err) => {
-                    alert(err);
                     console.log(err);
+                    alert('Adresse mail non valide ou déja utilisée')
                 });
-
     };
 
 
-    // On retourne le rendu HTML
-    return (
 
 
-        <div className="card-login position-signup">
-            <div className="banner">
-                <img src={logo} alt="Logo groupomania" className="logo"/>
-            </div>
-
-            <p className='text-logo'>Renforcer votre esprit d'équipe </p>
+// On retourne le rendu HTML
+return (
 
 
-            <div className="form-login" style={{height: '1000px'}}>
-                <p className="title">INSCRIPTION</p>
-                {/*On passe la fonction handleLogin au submit du formulaire,
-                pour envoyer toutes les donnés à l'API*/}
-                <form action="" onSubmit={handleLogin}>
-                    {/*On écoute tous les champs*/}
-                    <input type="text" placeholder="Nom" onChange={(e) => setNom(e.target.value)}
-                           value={nom}/>
-                    <br/>
-                    <input type="text" placeholder="Prénom" onChange={(e) => setPrenom(e.target.value)}
-                           value={prenom}/>
-                    <br/>
-                    <input type="text" placeholder="Pseudo" onChange={(e) => setPseudo(e.target.value)}
-                           value={pseudo}/>
-                    <br/>
-                    <input type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)}
-                           value={email}/>
-                    <br/>
-                    <input type="password" placeholder="Mot de passe" onChange={(e) => setPassword(e.target.value)}
-                           value={password}/>
-                    <input type="password" placeholder="Confirmer votre mot de passe"
-                           onChange={(e) => setPasswordCheck(e.target.value)}
-                           value={passwordCheck}/>
-                    <br/>
-                    <button type="submit"> S'INSCRIRE</button>
-                    <p className="txt-password">Votre mot de passe doit comporter au moins 8 caractères, dont au moins
-                        une majuscule, une minuscule, et deux chiffres.
-                    </p>
-                    <hr className="police-separator"/>
-                    <p >Vous avez déjà un compte ?</p>
-                    <NavLink to="/signin">
-                        <button>SE CONNECTER</button>
-                    </NavLink>
-
-                </form>
-            </div>
+    <div className="card-login position-signup">
+        <div className="banner">
+            <img src={logo} alt="Logo groupomania" className="logo"/>
         </div>
 
-    );
-};
+        <p className="text-logo">Renforcer votre esprit d'équipe </p>
+
+
+        <div className="form-login" style={{height: '1000px'}}>
+            <p className="title">INSCRIPTION</p>
+            {/*On passe la fonction handleLogin au submit du formulaire,
+                pour envoyer toutes les donnés à l'API*/}
+            <form action="" onSubmit={handleLogin}>
+                {/*On écoute tous les champs*/}
+                <input type="text" placeholder="Nom" onChange={(e) => setNom(e.target.value)}
+                       value={nom}/>
+                <br/>
+                <input type="text" placeholder="Prénom" onChange={(e) => setPrenom(e.target.value)}
+                       value={prenom}/>
+
+                <br/>
+
+                <input type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)}
+                       value={email}/>
+                <br/>
+                <input type="password" placeholder="Mot de passe" onChange={(e) => setPassword(e.target.value)}
+                       value={password}/>
+                <input type="password" placeholder="Confirmer votre mot de passe"
+                       onChange={(e) => setPasswordCheck(e.target.value)}
+                       value={passwordCheck}/>
+                <br/>
+                <button type="submit"> S'INSCRIRE</button>
+                <p className="txt-password">Votre mot de passe doit comporter au moins 8 caractères, dont au moins
+                    une majuscule, une minuscule, et deux chiffres.
+                </p>
+                <hr className="police-separator"/>
+                <p>Vous avez déjà un compte ?</p>
+                <NavLink to="/signin">
+                    <button>SE CONNECTER</button>
+                </NavLink>
+
+            </form>
+        </div>
+    </div>
+
+);
+}
+;
 
 export default SignUpForm;

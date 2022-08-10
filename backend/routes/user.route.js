@@ -8,7 +8,7 @@ const userCtrl = require('../controllers/user.controller')
 //
 router.post('/signup', userCtrl.signup)
 router.post('/login', userCtrl.login)
-router.get('/', userCtrl.getOneUser)
+router.get('/',auth, userCtrl.getOneUser)
 
 // On exporte les router pour app.js
 module.exports = router

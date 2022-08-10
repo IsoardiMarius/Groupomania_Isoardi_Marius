@@ -13,7 +13,7 @@ const postSchema = new mongoose.Schema(
         description: {type:String, required: true,maxLength: 500},
         imageUrl: {type:String},
         likes: {type:Number},
-        usersliked: {type: [String]}
+        usersLiked: {type: [String]}
     },
     {
         timestamps: true

@@ -9,7 +9,6 @@ const userSchema = new mongoose.Schema(
     {
         nom: {type:String, required: true},
         prenom: {type:String, required:true},
-        pseudo: {type: String, required: true, unique: true, minLength: 3, maxLength: 55},
         email: {type: String, required: true, unique: true, lowercase: true},
         password: {type: String, required: true},
         isAdmin: {type: Boolean, required:true}

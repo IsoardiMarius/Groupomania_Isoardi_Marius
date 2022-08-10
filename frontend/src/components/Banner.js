@@ -1,4 +1,4 @@
-//
+
 import React from 'react';
 import logo from "../assets/images/icon-left-font-monochrome-white.png";
 import {useNavigate} from "react-router-dom";
@@ -10,16 +10,18 @@ import {useNavigate} from "react-router-dom";
 const Banner = () => {
 
     const navigate = useNavigate()
+    // On supprime le localstorage pour déconnecter l'utilisateur
     const logout = (e) => {
         e.preventDefault()
         localStorage.removeItem('productCart')
         navigate('/signin')
     }
+    // On redirige vers la page principale
     const news = (e) => {
         e.preventDefault()
         navigate('/')
     }
-
+    // On redirige vers la page ou les posts de l'utilisateur sont afficher
     const myPosts = (e) => {
         e.preventDefault()
         navigate('/')
@@ -32,7 +34,7 @@ const Banner = () => {
             <img src={logo} alt="Logo groupomania" className="logo"/>
 
         </div>
-            <div className="button-div">
+            <nav className="button-div">
             <div className="disconnect-icon" onClick={logout}>
                 <button className="button-banner">Déconnexion</button>
             </div>
@@ -42,7 +44,7 @@ const Banner = () => {
                 <div className="disconnect-icon" onClick={myPosts}>
                     <button className="button-banner">Mes postes</button>
                 </div>
-            </div>
+            </nav>
     </header>
 
     );

@@ -7,6 +7,9 @@ const PostList = () => {
     const [posts, setPosts] = useState([])
     const user = JSON.parse(localStorage.getItem('productCart'));
 
+
+
+    // Call API pour récupérer tous les postes de la DB
     useEffect(() => {
         axios.get('http://localhost:4000/api/post', {
             headers: {
@@ -14,7 +17,6 @@ const PostList = () => {
             }
         })
             .then((res) => {
-                console.log(res.data);
                 setPosts(res.data)
 
 
@@ -23,7 +25,7 @@ const PostList = () => {
                 console.error(error);
             });
 
-    }, []);
+    }, [user.token]);
 
 
 
