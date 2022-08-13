@@ -15,7 +15,7 @@ const SignUpForm = () => {
     const [password, setPassword] = useState('');
     const [nom, setNom] = useState('');
     const [prenom, setPrenom] = useState('');
-    //Controle de la sécurité du password
+    //Contrôle de la sécurité du password
     const [passwordCheck, setPasswordCheck] = useState('');
 
     //Regex pour le controle du password
@@ -40,7 +40,7 @@ const SignUpForm = () => {
             alert('Veuillez confirmer votre mot de passe');
 
             // Si tout est bon on fait envoie nos informations à la base de donnée
-        } else
+        } else {
 
             fetch("http://localhost:4000/api/auth/signup", {
                 method: "post",
@@ -61,18 +61,20 @@ const SignUpForm = () => {
 
             })
                 .then((res) => {
-
+                    if (res.status === 201) {
+                    alert('Vous allez être redirigé vers la page de connexion ')
                         navigate('/signin')
-                        alert('Vous allez être redirigé vers la page de connexion ')
+                    }else {
+                        alert('Adresse mail non valide ou déja utilisée')
+                    }
 
 
 
                 })
                 .catch((err) => {
                     console.log(err);
-                    alert('Adresse mail non valide ou déja utilisée')
                 });
-    };
+    }}
 
 
 

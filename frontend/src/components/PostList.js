@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import CardPost from "../components/CardPost";
-import CreatePost from "./CreatePost";
+import PostCreate from "./PostCreate";
 import axios from "axios";
 
 const PostList = () => {
-    const [posts, setPosts] = useState([])
+    const [posts, setPosts] = useState([]);
     const user = JSON.parse(localStorage.getItem('productCart'));
 
 
@@ -17,7 +17,7 @@ const PostList = () => {
             }
         })
             .then((res) => {
-                setPosts(res.data)
+                setPosts(res.data);
 
 
             })
@@ -28,20 +28,16 @@ const PostList = () => {
     }, [user.token]);
 
 
-
-
     return (<main>
-            <div className="post-list">
-                <CreatePost/>
-
-                {posts.map((post, index) => (<CardPost key={index} post={post}/>))}
-
-
-
+        <div className="post-list">
+            {/*Redirection to create post*/}
+            <PostCreate/>
+            {/*all post*/}
+            {posts.map((post, index) => (<CardPost key={index} post={post}/>))}
 
 
-            </div>
-        </main>);
+        </div>
+    </main>);
 };
 
 export default PostList;

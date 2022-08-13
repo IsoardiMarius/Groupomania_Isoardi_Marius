@@ -5,19 +5,14 @@ import Banner from "../components/Banner";
 import PostList from "../components/PostList";
 import {useNavigate} from "react-router-dom";
 
-
 const Home = () => {
     let navigate = useNavigate();
     let user = JSON.parse(localStorage.getItem('productCart'));
     useEffect(() => {
         if (!user) {
             navigate("/signin");
-        } else {
-            navigate('/')
-
-
         }
-    }, [useNavigate]);
+    }, [navigate, user]);
     return (
 
         <div>

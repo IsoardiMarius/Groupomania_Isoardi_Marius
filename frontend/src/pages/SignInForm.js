@@ -15,7 +15,7 @@ const SignInForm = () => {
     let navigate = useNavigate();
 
 
-    //Fonction qui va renvoyer les données vers l'api
+    //Call API for connect user
     const handleLogin = (e) => {
 
         e.preventDefault();

@@ -3,18 +3,20 @@ const Post = require("../models/post.model");
 // nous permettent de modifier le système de fichiers,
 // y compris aux fonctions permettant de supprimer les fichiers.
 const fs = require('fs');
+const userModel = require("../models/user.model");
 
 ///// On crée un objet dans la base de donnée
 exports.createPost = (req, res, next) => {
     const postObject = req.body;
     console.log(req.body);
+    console.log(req.file);
     const post = new Post({
         // On colle l'objet présent dans la requête
         ...postObject,
         likes: 0,
         usersLiked: [],
         // On récupère le protocole de la requête : HTTP, on récupère l'ôte du serveur : 'localhost:3000', et le nom du fichier
-        //imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+        imageUrl: req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}` : ""
     });
     // On sauvegarde l'objet dans la base de donnée,
     post.save()
@@ -31,7 +33,7 @@ exports.modifyPost = (req, res, next) => {
     // nous recevrons uniquement les données JSON.
     const postObject = req.file ? {
         // On transforme la chaine de caractère en objet js exploitable
-        ...JSON.parse(req.body.post),
+        ... req.body,
         // On récupère le protocole de la requête : HTTP, on récupère l'ôte du serveur : 'localhost:3000', et le nom du fichier
         imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
     } : { ...req.body };
