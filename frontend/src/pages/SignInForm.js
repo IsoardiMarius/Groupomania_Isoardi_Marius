@@ -51,11 +51,11 @@ const SignInForm = () => {
 
     return (
 
-        <div className="card-login position-signin">
+        <main className="card-login position-signin">
             <div className="banner">
                 <img src={logo} alt="Logo groupomania" className="logo"/>
             </div>
-            <p className="text-logo">Renforcer votre esprit d'équipe </p>
+            <p className="text-logo">Renforcez votre esprit d'équipe </p>
 
 
             <div className="form-login">
@@ -63,22 +63,22 @@ const SignInForm = () => {
                 {/*On passe la fonction qui contrôle et envoie les données à l'api*/}
                 <form onSubmit={handleLogin}>
                     {/*On écoute les inputs*/}
-                    <input type="text" placeholder="Email" onChange={(e) => setEmail(e.target.value)} value={email}/>
+                    <input type="text" placeholder="Email" autoComplete="username" onChange={(e) => setEmail(e.target.value)} value={email}/>
                     <br/>
                     <input type="password" placeholder="Mot de passe" onChange={(e) => setPassword(e.target.value)}
-                           value={password}/>
+                           value={password} autoComplete="current-password"/>
                     <br/>
-                    <button type="submit"> SE CONNECTER</button>
+                    <button type="submit" aria-label="Connexion"> SE CONNECTER</button>
                     <p>Mot de passe oublié ?</p>
                     <hr className="police-separator"/>
                     <p>Pas encore de compte ?</p>
                     <NavLink to="/signup">
-                        <button>S'INSCRIRE</button>
+                        <button aria-label="Redirection vers la page d'inscription">S'INSCRIRE</button>
                     </NavLink>
 
                 </form>
             </div>
-        </div>);
+        </main>);
 };
 
 export default SignInForm;

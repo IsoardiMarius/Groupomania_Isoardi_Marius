@@ -5,43 +5,42 @@ import Banner from "../components/Banner";
 
 const ModifyProduct = () => {
 
-    const user = JSON.parse(localStorage.getItem('productCart'))
-    const url = window.location.pathname
-    const postId = url.split('/')[2]
-    const navigate = useNavigate()
+    const user = JSON.parse(localStorage.getItem('productCart'));
+    const url = window.location.pathname;
+    const postId = url.split('/')[2];
+    const navigate = useNavigate();
     const [description, setDescription] = useState('');
     const [postImgInput, setPostImgInput] = useState('');
     const [imgPostFile, setImgPostFile] = useState();
-    const [postData, setPostData] = useState('')
+    const [postData, setPostData] = useState('');
 
     useEffect(() => {
         if (!user) {
-            navigate('signin')
+            navigate("/signin");
         }
-    });
+    }, [navigate, user]);
 
     // API call for post information
     useEffect(() => {
-    axios({
-        method: "get", url: `http://localhost:4000/api/post/${postId}`, credentials: true,
+        axios({
+            method: "get", url: `http://localhost:4000/api/post/${postId}`, credentials: true,
 
-        headers: {
-            'Authorization': `Bearer ${user.token}`
-        }
-    })
-        .then((res) => {
-
-            setPostData(res.data)
-            console.log(res);
-
-
+            headers: {
+                'Authorization': `Bearer ${user.token}`
+            }
         })
-        .catch((err) => {
-            console.log(err);
-        });
+            .then((res) => {
 
-    }, [ModifyProduct])
+                setPostData(res.data);
+                console.log(res);
 
+
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+
+    }, [ModifyProduct]);
 
 
     // Call API for modify post
@@ -50,43 +49,35 @@ const ModifyProduct = () => {
         console.log(e.target.description.value);
 
 
-        if (description !== "") {
+        const formData = new FormData();
 
 
-            const formData = new FormData();
+        formData.append("description", e.target.description.value);
+        formData.append("imagePost", imgPostFile);
 
 
-            formData.append("description", e.target.description.value);
-            formData.append("imagePost", imgPostFile);
+        axios.put(`http://localhost:4000/api/post/${postData._id}`, formData, {headers: {'Authorization': `Bearer ${user.token}`}})
+            .then((res) => {
 
+                console.log(res);
+                navigate('/')
 
+            })
+            .catch((err) => {
+                console.log(err);
+            });
 
-            axios.put(`http://localhost:4000/api/post/${postData._id}`, formData, {headers: {'Authorization': `Bearer ${user.token}`}})
-                .then((res) => {
-
-                    console.log(res);
-                    // navigate('/')
-
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
-
-        } else {
-            alert('Veuillez écrire du contenu');
-        }
 
     };
 
-
-
+    // For listen input file
     const handleImg = (e) => {
-        e.preventDefault()
-        setPostImgInput(e.target.value)
-        setImgPostFile(e.target.files[0])
+        e.preventDefault();
+        setPostImgInput(e.target.value);
+        setImgPostFile(e.target.files[0]);
     };
 
-
+    // For delete post
     const deletePost = () => {
 
         fetch(`http://localhost:4000/api/post/${postData._id}`, {
@@ -99,7 +90,7 @@ const ModifyProduct = () => {
         })
             .then((res) => {
                 console.log(res);
-
+                navigate("/")
 
 
             })
@@ -108,57 +99,68 @@ const ModifyProduct = () => {
             });
 
 
-    }
+    };
 
 
     return (
+        user ?
         <>
-            <Banner/>
+        <Banner/>
 
-            <div className="div-create-post">
-                <div className="create-post" aria-label="Créer un post">
-                    <h3>Quoi de neuf ?</h3>
-                    <form onSubmit={(e) => modifyPost(e)} encType="multipart/form-data">
-                        <div className="create-post-redaction">
+        <main className="div-create-post">
+            <div className="create-post" aria-label="Créer un post">
+                <label htmlFor="description" className="create-post-label">Modifier votre post :</label>
+                <img src={postData.imageUrl} alt="" style={{width: "100%", marginBottom: "30px"}}/>
+                <form onSubmit={(e) => modifyPost(e)} encType="multipart/form-data">
+                    <div className="create-post-redaction">
+                            <textarea maxLength="500" className="create-post-input" rows="7" cols="5"
+                                      id="description"
+                                      name="description"
+                                      onChange={(e) => setDescription(e.target.value)}
+                                      defaultValue={postData.description}/>
+                    </div>
+                    {/*<button className="create-post-button" type="file">*/}
 
+                    {/*    <i className="fa-regular fa-image"></i>*/}
+                    {/*    <p className="create-post-footer-text">Photo</p>*/}
 
-                <textarea maxLength="500" className="create-post-input" rows="7" cols="5"
-                          name="description"
-                          onChange={(e) => setDescription(e.target.value)}
-                          defaultValue={postData.description}/>
-                        </div>
-                        <div className="create-post-footer">
-                            {/*<button className="create-post-button" type="file">*/}
+                    {/*</button>*/}
+                    {/*<button className="create-post-button">*/}
 
-                            {/*    <i className="fa-regular fa-image"></i>*/}
-                            {/*    <p className="create-post-footer-text">Photo</p>*/}
+                    {/*    <i className="fa-brands fa-youtube"></i>*/}
+                    {/*    <p className="create-post-footer-text">Vidéo</p>*/}
 
-                            {/*</button>*/}
-                            {/*<button className="create-post-button">*/}
+                    {/*</button>*/}
+                    <label className="modify-post-input-label" htmlFor="imagePost">Changer d'image :</label>
 
-                            {/*    <i className="fa-brands fa-youtube"></i>*/}
-                            {/*    <p className="create-post-footer-text">Vidéo</p>*/}
-
-                            {/*</button>*/}
-                            <input type="file" name="imagePost" id="imagePost" accept='image/png, image/jpeg, image/jpg, image/gif' onChange={handleImg} value={postImgInput}/>
-
-                            <label htmlFor="image"></label>
-                            <button className="create-post-button" type="submit">
-
-                                <i className="fa-solid fa-share"></i>
-                                <p className="create-post-footer-text">Publier</p>
-
-                            </button>
-                            <i className="fa-regular fa-comment" onClick={deletePost}></i>
-
-                        </div>
+                    <input type="file" name="imagePost" id="imagePost"
+                           accept="image/png, image/jpeg, image/jpg, image/gif" onChange={handleImg}
+                           value={postImgInput} className="create-post-input-file"/>
 
 
-                    </form>
-                </div>
+
+                    <div className="modify-post-footer">
+
+                        <button className="create-post-button" type="submit">
+
+                            <i className="fa-solid fa-share"></i>
+                            <p className="create-post-footer-text" aria-label="Publier votre poste">Publier</p>
+
+                        </button>
+
+                        <button className="create-post-button">
+
+                            <p className="create-post-footer-text" aria-label="Supprimer votre poste" onClick={deletePost}>Supprimer</p>
+
+                        </button>
+                    </div>
+
+
+                </form>
             </div>
-        </>
-    );
+        </main>
+    </>
+    : navigate('/signin'));
 };
 
 export default ModifyProduct;

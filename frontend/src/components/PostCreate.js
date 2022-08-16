@@ -10,12 +10,12 @@ const PostCreate = () => {
 
     return (
 
-        <div className="post-create" aria-label="Créer un post">
+        <section className="post-create" aria-label="Créer un post">
             <h3>Quoi de neuf ?</h3>
             <button className="post-create-button" onClick={navigateCreatePost}>Rédiger un post
             </button>
 
-        </div>);
+        </section>);
 };
 
 export default PostCreate;

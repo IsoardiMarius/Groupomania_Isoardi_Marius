@@ -4,7 +4,8 @@ import Banner from "../components/Banner";
 import {useNavigate} from "react-router-dom";
 
 
-const CreatePost = () => {
+
+const CreatePost = (props) => {
     const user = JSON.parse(localStorage.getItem('productCart'));
     const userId = user.userId;
     const [description, setDescription] = useState('');
@@ -15,6 +16,12 @@ const CreatePost = () => {
     const navigate = useNavigate();
     const [postImgInput, setPostImgInput] = useState('');
     const [imgPostFile, setImgPostFile] = useState();
+
+    // useEffect(() => {
+    //     if (!user) {
+    //         navigate("/signin");
+    //     }
+    // }, [navigate, user]);
 
 
     // Call API for user information
@@ -71,7 +78,8 @@ const CreatePost = () => {
                 .then((res) => {
 
                     console.log(res);
-                    navigate('/')
+                    // navigate('/')
+                    props.setPosts([...props.posts, res.data])
 
                 })
                 .catch((err) => {
@@ -93,10 +101,10 @@ const CreatePost = () => {
     };
 
 
-    return (<>
+    return(<>
             <Banner/>
 
-            <div className="div-create-post">
+            <main className="div-create-post">
                 <div className="create-post" aria-label="Créer un post">
                     <h3>Quoi de neuf ?</h3>
                     <form onSubmit={(e) => Post(e)} encType="multipart/form-data">
@@ -120,10 +128,10 @@ const CreatePost = () => {
                             {/*    <p className="create-post-footer-text">Vidéo</p>*/}
 
                             {/*</button>*/}
+                            <label className="input-label" htmlFor="imagePost">Ajouter une image :</label>
                             <input type="file" name="imagePost" id="imagePost" accept='image/png, image/jpeg, image/jpg, image/gif' onChange={handleImg} value={postImgInput}/>
 
-                            <label htmlFor="image"></label>
-                            <button className="create-post-button" type="submit">
+                            <button className="create-post-button" type="submit" aria-label="Publier votre poste">
 
                                 <i className="fa-solid fa-share"></i>
                                 <p className="create-post-footer-text">Publier</p>
@@ -134,8 +142,9 @@ const CreatePost = () => {
 
                     </form>
                 </div>
-            </div>
-        </>);
+            </main>
+        </>)
+
 
 };
 

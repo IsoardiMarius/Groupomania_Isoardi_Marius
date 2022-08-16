@@ -3,22 +3,26 @@
 import React, {useEffect} from 'react';
 import Banner from "../components/Banner";
 import PostList from "../components/PostList";
-import {useNavigate} from "react-router-dom";
+// import {useNavigate} from "react-router-dom";
+import {Navigate} from "react-router-dom"
 
 const Home = () => {
-    let navigate = useNavigate();
+    // let navigate = useNavigate();
     let user = JSON.parse(localStorage.getItem('productCart'));
-    useEffect(() => {
-        if (!user) {
-            navigate("/signin");
-        }
-    }, [navigate, user]);
-    return (
 
+    // useEffect(() => {
+    //     if (!user) {
+    //         navigate("/signin");
+    //     }
+    // }, [navigate, user]);
+
+    return (
+        user ?
         <div>
             <Banner/>
             <PostList/>
         </div>
+            : <Navigate to="/signin" replace={true}/>
 
     );
 

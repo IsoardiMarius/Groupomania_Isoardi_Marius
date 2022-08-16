@@ -8,8 +8,8 @@ const userModel = require("../models/user.model");
 ///// On crée un objet dans la base de donnée
 exports.createPost = (req, res, next) => {
     const postObject = req.body;
-    console.log(req.body);
-    console.log(req.file);
+    // console.log(req.body);
+    // console.log(req.file);
     const post = new Post({
         // On colle l'objet présent dans la requête
         ...postObject,
@@ -20,7 +20,8 @@ exports.createPost = (req, res, next) => {
     });
     // On sauvegarde l'objet dans la base de donnée,
     post.save()
-        .then(() => { res.status(201).json({message: 'Post enregistré !'})})
+        .then(() => { res.status(201).json(post)
+            console.log(res)})
         .catch(error => { res.status(400).json( { error })})
 };
 
@@ -108,8 +109,9 @@ exports.likePost = (req, res, next) => {
         Post.updateOne(
             { _id: postId },
             {
-                $inc: { likes: like },
                 $push: { usersLiked: userId },
+                $inc: { likes: like },
+
             }
         )
             .then((post) => res.status(200).json({ message: "post appréciée" }))

@@ -16,6 +16,9 @@
 .card-img {
   width: 100%;
   margin: 15px 0;
+  max-width: 450px;
+  max-height: 375px;
+  object-fit: cover;
 
 }
 
@@ -41,6 +44,7 @@
 
 .card-text {
   padding: 15px 15px 15px 15px;
+  margin-left: 8px;
 }
 
 
@@ -63,17 +67,45 @@
   color: #d437f6 !important;
 }
 
-.modify {
+.card-post-number-like {
+  margin-left: 23px;
+  font-weight: bold;
+  color: #525252;
+}
+
+.modify-button {
   position: absolute;
   margin-top: 3px;
   right: 10px;
-  border-color: #afafd0!important;
+  bottom: 28px;
+  border-color: #afafd0;
   background: white;
   padding: 2px;
   font-size: 12px;
   outline: white;
   color: #9999d9;
   font-weight: 600;
+
+  &:focus, &:active {
+    outline: black;
+    border-color: black;
+  }
+}
+
+.card-post-button-like {
+  border: none;
+  font-size: 18px;
+  background: white;
+  width: 48px;
+  height: 48px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:active, &:focus {
+    border: initial;
+  }
 }
 
 @media only screen and (max-width: 744px) {

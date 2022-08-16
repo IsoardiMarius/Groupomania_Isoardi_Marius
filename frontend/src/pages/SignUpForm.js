@@ -83,7 +83,7 @@ const SignUpForm = () => {
 return (
 
 
-    <div className="card-login position-signup">
+    <main className="card-login position-signup">
         <div className="banner">
             <img src={logo} alt="Logo groupomania" className="logo"/>
         </div>
@@ -109,7 +109,7 @@ return (
                        value={email}/>
                 <br/>
                 <input type="password" placeholder="Mot de passe" onChange={(e) => setPassword(e.target.value)}
-                       value={password}/>
+                       value={password} />
                 <input type="password" placeholder="Confirmer votre mot de passe"
                        onChange={(e) => setPasswordCheck(e.target.value)}
                        value={passwordCheck}/>
@@ -121,12 +121,12 @@ return (
                 <hr className="police-separator"/>
                 <p>Vous avez déjà un compte ?</p>
                 <NavLink to="/signin">
-                    <button>SE CONNECTER</button>
+                    <button aria-label="Redirection vers la page de connexion">SE CONNECTER</button>
                 </NavLink>
 
             </form>
         </div>
-    </div>
+    </main>
 
 );
 }

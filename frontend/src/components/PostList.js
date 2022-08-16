@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import CardPost from "../components/CardPost";
 import PostCreate from "./PostCreate";
 import axios from "axios";
+import CreatePost from "../pages/CreatePost";
 
 const PostList = () => {
     const [posts, setPosts] = useState([]);
@@ -20,6 +21,7 @@ const PostList = () => {
                 setPosts(res.data);
 
 
+
             })
             .catch((error) => {
                 console.error(error);
@@ -31,9 +33,12 @@ const PostList = () => {
     return (<main>
         <div className="post-list">
             {/*Redirection to create post*/}
-            <PostCreate/>
+            {/*<PostCreate/>*/}
+            <CreatePost setPosts={setPosts} posts={posts}/>
             {/*all post*/}
-            {posts.map((post, index) => (<CardPost key={index} post={post}/>))}
+            <section>
+            {posts.slice().reverse().map((post, index) => (<CardPost key={index} post={post}/>))}
+            </section>
 
 
         </div>
