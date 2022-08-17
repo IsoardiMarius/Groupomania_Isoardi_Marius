@@ -6,6 +6,7 @@ import {DataProvider} from "./context/UserContext";
 import {useState} from "react";
 import ModifyProduct from "./pages/ModifyProduct";
 import CreatePost from "./pages/CreatePost";
+import CreatePostt from "./pages/CreatePostt";
 
 
 const App = () => {
@@ -20,7 +21,7 @@ const App = () => {
                     <Route path="/signin" element={<SignInForm/>}/>
                     <Route path="/signup" element={<SignUpForm/>}/>
                     <Route path="/" element={<Home/>}/>
-                    {/*<Route path="/create-post" element={<CreatePost/>}/>*/}
+                    <Route path="/create-post" element={<CreatePostt/>}/>
                     <Route path="/product/:id" element={<ModifyProduct/>}/>
 
 

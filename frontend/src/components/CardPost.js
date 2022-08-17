@@ -11,8 +11,8 @@ const CardPost = ({post}) => {
     const userId = user.userId;
     const [id, setId] = useState('');
     const [isAdmin, setIsAdmin] = useState()
-    // const [liked, setLiked] = useState(post.usersLiked.includes(userId));
-    // const [numberLike, setNumberLike] = useState(post.usersLiked.length);
+    const [liked, setLiked] = useState(post.usersLiked.includes(userId));
+    const [numberLike, setNumberLike] = useState(post.usersLiked.length);
 
     // Call api for userId
     useEffect(() => {
@@ -43,64 +43,64 @@ const CardPost = ({post}) => {
 
 
     // Like a post
-    // const like = () => {
-    //
-    //
-    //     fetch("http://localhost:4000/api/post/like", {
-    //         method: "post", headers: {
-    //             'Accept': 'application/json',
-    //             'Content-Type': 'application/json',
-    //             'Authorization': `Bearer ${user.token}`
-    //
-    //         },
-    //
-    //         //make sure to serialize your JSON body
-    //         body: JSON.stringify({
-    //             like: 1, userId: id, id: post._id
-    //
-    //         })
-    //     })
-    //         .then((res) => {
-    //
-    //             setLiked(true);
-    //             console.log(res);
-    //             setNumberLike(numberLike + 1);
-    //
-    //
-    //         })
-    //         .catch((err) => {
-    //             console.log(err);
-    //         });
-    //
-    //
-    // };
-    //dislike a post
-    // const dislike = () => {
-    //
-    //     fetch("http://localhost:4000/api/post/like", {
-    //         method: "post", headers: {
-    //             'Accept': 'application/json',
-    //             'Content-Type': 'application/json',
-    //             'Authorization': `Bearer ${user.token}`
-    //
-    //         },
-    //
-    //         body: JSON.stringify({
-    //             like: 0, userId: id, id: post._id
-    //
-    //         })
-    //     })
-    //         .then((res) => {
-    //             setLiked(false);
-    //             console.log(res);
-    //             setNumberLike(numberLike - 1);
-    //
-    //
-    //         })
-    //         .catch((err) => {
-    //             console.log(err);
-    //         });
-    // };
+    const like = () => {
+
+
+        fetch("http://localhost:4000/api/post/like", {
+            method: "post", headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${user.token}`
+
+            },
+
+            //make sure to serialize your JSON body
+            body: JSON.stringify({
+                like: 1, userId: id, id: post._id
+
+            })
+        })
+            .then((res) => {
+
+                setLiked(true);
+                console.log(res);
+                setNumberLike(numberLike + 1);
+
+
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+
+
+    };
+    // dislike a post
+    const dislike = () => {
+
+        fetch("http://localhost:4000/api/post/like", {
+            method: "post", headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${user.token}`
+
+            },
+
+            body: JSON.stringify({
+                like: 0, userId: id, id: post._id
+
+            })
+        })
+            .then((res) => {
+                setLiked(false);
+                console.log(res);
+                setNumberLike(numberLike - 1);
+
+
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
 
     // Redirection to modify product
     const modifyProduct = () => {
@@ -108,9 +108,9 @@ const CardPost = ({post}) => {
     };
 
     // On transforme la date renvoyer par mongoDB
-    // const d = post.updatedAt;
-    // const date = Array.from(d);
-    // const Date = date[0] + date[1] + date[2] + date[3] + date[4] + date[5] + date[6] + date[7] + date[8] + date[9] + '-' + date[11] + date[12] + date[13] + date[14] + date[15];
+    const d = post.updatedAt;
+    const date = Array.from(d);
+    const Date = date[0] + date[1] + date[2] + date[3] + date[4] + date[5] + date[6] + date[7] + date[8] + date[9] + '-' + date[11] + date[12] + date[13] + date[14] + date[15];
 
 
     return (
@@ -119,18 +119,18 @@ const CardPost = ({post}) => {
         <article className="card-post">
             <div className="card-header">
                 <p className="card-name">{post.nom} {post.prenom}</p>
-                {/*<p className="card-date">{Date}</p>*/}
+                <p className="card-date">{Date}</p>
             </div>
             <img src={post.imageUrl} alt="" className="card-img"/>
             <p className="card-text">{post.description}</p>
             <div className="card-logo">
 
                 {/*if user like post*/}
-                {/*{liked && (<button className="card-post-button-like" aria-label="button for dislike"><i*/}
-                {/*    className="fa-regular fa-heart like" onClick={dislike}></i></button>)}*/}
+                {liked && (<button className="card-post-button-like" aria-label="button for dislike"><i
+                    className="fa-regular fa-heart like" onClick={dislike}></i></button>)}
                 {/*/!*if user dislike post*!/*/}
-                {/*{!liked && (<button className="card-post-button-like" aria-label="button for like"><i*/}
-                {/*    className="fa-regular fa-heart" onClick={like}></i></button>)}*/}
+                {!liked && (<button className="card-post-button-like" aria-label="button for like"><i
+                    className="fa-regular fa-heart" onClick={like}></i></button>)}
 
                 <button className="card-post-button-like" aria-label="button for comment"><i
                     className="fa-regular fa-comment"></i></button>
@@ -143,9 +143,10 @@ const CardPost = ({post}) => {
 
 
             </div>
+            {numberLike === 0 && (<p className="card-post-number-like">{numberLike} like</p>)}
+            {numberLike === 1 && (<p className="card-post-number-like">{numberLike} like</p>)}
+            {numberLike > 1 && (<p className="card-post-number-like">{numberLike} likes</p>)}
 
-            {/*{numberLike === 1 && (<p className="card-post-number-like">{numberLike} like</p>)}*/}
-            {/*{numberLike > 1 && (<p className="card-post-number-like">{numberLike} likes</p>)}*/}
 
 
 

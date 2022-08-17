@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
-import {useNavigate} from "react-router-dom";
+import {Navigate, useNavigate} from "react-router-dom";
 import Banner from "../components/Banner";
 
 const ModifyProduct = () => {
@@ -14,11 +14,9 @@ const ModifyProduct = () => {
     const [imgPostFile, setImgPostFile] = useState();
     const [postData, setPostData] = useState('');
 
-    useEffect(() => {
-        if (!user) {
-            navigate("/signin");
-        }
-    }, [navigate, user]);
+
+
+
 
     // API call for post information
     useEffect(() => {
@@ -103,7 +101,7 @@ const ModifyProduct = () => {
 
 
     return (
-        user ?
+
         <>
         <Banner/>
 
@@ -160,7 +158,8 @@ const ModifyProduct = () => {
             </div>
         </main>
     </>
-    : navigate('/signin'));
+
+)
 };
 
 export default ModifyProduct;

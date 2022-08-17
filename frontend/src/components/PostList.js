@@ -33,7 +33,7 @@ const PostList = () => {
     return (<main>
         <div className="post-list">
             {/*Redirection to create post*/}
-            {/*<PostCreate/>*/}
+            <PostCreate/>
             <CreatePost setPosts={setPosts} posts={posts}/>
             {/*all post*/}
             <section>

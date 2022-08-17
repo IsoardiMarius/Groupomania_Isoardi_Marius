@@ -20,8 +20,7 @@ exports.createPost = (req, res, next) => {
     });
     // On sauvegarde l'objet dans la base de donnée,
     post.save()
-        .then(() => { res.status(201).json(post)
-            console.log(res)})
+        .then(() => { res.status(201).json(post)})
         .catch(error => { res.status(400).json( { error })})
 };
 

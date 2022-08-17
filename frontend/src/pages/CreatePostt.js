@@ -5,7 +5,7 @@ import Banner from "../components/Banner";
 
 
 
-const CreatePost = (props) => {
+const CreatePostt = () => {
     const user = JSON.parse(localStorage.getItem('productCart'));
     const userId = user.userId;
     const [description, setDescription] = useState('');
@@ -74,14 +74,7 @@ const CreatePost = (props) => {
                 .then((res) => {
 
                     console.log(res);
-                    props.setPosts([...props.posts, res.data])
-                    setDescription('')
-                    setPostImgInput('')
-                    setImgPostFile('')
-
-
-
-
+                    navigate('/')
 
 
                 })
@@ -105,48 +98,49 @@ const CreatePost = (props) => {
 
 
     return(<>
-            <main className="div-create-post">
-                <div className="create-post" aria-label="Créer un post">
-                    <h3>Quoi de neuf {nom} ?</h3>
-                    <form onSubmit={(e) => Post(e)} encType="multipart/form-data">
-                        <div className="create-post-redaction">
+        <Banner/>
+        <main className="div-create-post">
+            <div className="create-post" aria-label="Créer un post">
+                <h3>Quoi de neuf ?</h3>
+                <form onSubmit={(e) => Post(e)} encType="multipart/form-data">
+                    <div className="create-post-redaction">
 
                 <textarea maxLength="500" className="create-post-input" rows="7" cols="5"
                           name="description"
                           placeholder="Commencer à rédiger un post" onChange={(e) => setDescription(e.target.value)}
                           value={description}/>
-                        </div>
-                        <div className="create-post-footer">
-                            {/*<button className="create-post-button" type="file">*/}
+                    </div>
+                    <div className="create-post-footer">
+                        {/*<button className="create-post-button" type="file">*/}
 
-                            {/*    <i className="fa-regular fa-image"></i>*/}
-                            {/*    <p className="create-post-footer-text">Photo</p>*/}
+                        {/*    <i className="fa-regular fa-image"></i>*/}
+                        {/*    <p className="create-post-footer-text">Photo</p>*/}
 
-                            {/*</button>*/}
-                            {/*<button className="create-post-button">*/}
+                        {/*</button>*/}
+                        {/*<button className="create-post-button">*/}
 
-                            {/*    <i className="fa-brands fa-youtube"></i>*/}
-                            {/*    <p className="create-post-footer-text">Vidéo</p>*/}
+                        {/*    <i className="fa-brands fa-youtube"></i>*/}
+                        {/*    <p className="create-post-footer-text">Vidéo</p>*/}
 
-                            {/*</button>*/}
-                            <label className="input-label" htmlFor="imagePost">Ajouter une image :</label>
-                            <input type="file" name="imagePost" id="imagePost" accept='image/png, image/jpeg, image/jpg, image/gif' onChange={handleImg} value={postImgInput}/>
+                        {/*</button>*/}
+                        <label className="input-label" htmlFor="imagePost">Ajouter une image :</label>
+                        <input type="file" name="imagePost" id="imagePost" accept='image/png, image/jpeg, image/jpg, image/gif' onChange={handleImg} value={postImgInput}/>
 
-                            <button className="create-post-button" type="submit" aria-label="Publier votre poste">
+                        <button className="create-post-button" type="submit" aria-label="Publier votre poste">
 
-                                <i className="fa-solid fa-share"></i>
-                                <p className="create-post-footer-text">Publier</p>
+                            <i className="fa-solid fa-share"></i>
+                            <p className="create-post-footer-text">Publier</p>
 
-                            </button>
-                        </div>
+                        </button>
+                    </div>
 
 
-                    </form>
-                </div>
-            </main>
-        </>)
+                </form>
+            </div>
+        </main>
+    </>)
 
 
 };
 
-export default CreatePost;
+export default CreatePostt;
