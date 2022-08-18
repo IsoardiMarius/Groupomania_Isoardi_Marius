@@ -43,7 +43,13 @@ exports.modifyPost = (req, res, next) => {
     Post.findOne({_id: req.params.id})
         .then((post) => {
             // Si l'userId est différent celui dans la requête 'not authorized'
-            if (post.userId !== req.auth.userId) {
+            if (req.body.isAdmin){
+                //Sinon on remplace l'objet avec le même id que celui présent dans l'appel fetch, par celui de la requête
+                Post.updateOne({ _id: req.params.id}, { ...postObject, _id: req.params.id})
+                    .then(() => res.status(200).json({message : 'Objet modifié!'}))
+                    .catch(error => res.status(401).json({ error }));
+            }
+            else if (post.userId !== req.auth.userId) {
                 res.status(401).json({ message : 'Not authorized'});
             } else {
                 //Sinon on remplace l'objet avec le même id que celui présent dans l'appel fetch, par celui de la requête
@@ -65,9 +71,8 @@ exports.deletePost = (req, res, next) => {
     Post.findOne({ _id: req.params.id})
         .then(post => {
             // Si l'userId de l'objet est différend de celui récupérer dans le token
-            if (post.userId !== req.auth.userId) {
-                res.status(401).json({message: 'Not authorized'});
-            } else {
+            console.log(req.body);
+            if(post.userId === req.auth.userId || req.body.isAdmin) {
                 // Sinon on supprime l'image de notre serveur et l'objet de la base de donnée
                 const filename = post.imageUrl.split('/images/')[1];
                 fs.unlink(`images/${filename}`, () => {
@@ -75,6 +80,9 @@ exports.deletePost = (req, res, next) => {
                         .then(() => { res.status(200).json({message: 'Objet supprimé !'})})
                         .catch(error => res.status(401).json({ error }));
                 });
+            }
+            else  {
+                res.status(401).json({message: 'Not authorized'});
             }
         })
         .catch( error => {

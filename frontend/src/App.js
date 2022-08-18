@@ -4,7 +4,7 @@ import SignUpForm from "./pages/SignUpForm";
 import SignInForm from "./pages/SignInForm";
 import {DataProvider} from "./context/UserContext";
 import {useState} from "react";
-import ModifyProduct from "./pages/ModifyProduct";
+import ModifyPost from "./pages/ModifyPost";
 import CreatePost from "./pages/CreatePost";
 import CreatePostt from "./pages/CreatePostt";
 
@@ -22,7 +22,7 @@ const App = () => {
                     <Route path="/signup" element={<SignUpForm/>}/>
                     <Route path="/" element={<Home/>}/>
                     <Route path="/create-post" element={<CreatePostt/>}/>
-                    <Route path="/product/:id" element={<ModifyProduct/>}/>
+                    <Route path="/product/:id" element={<ModifyPost/>}/>
 
 
                 </Routes>
