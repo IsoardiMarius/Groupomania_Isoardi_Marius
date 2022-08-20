@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
-import {Navigate, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import Banner from "../components/Banner";
 
 const ModifyPost = () => {
@@ -39,9 +39,8 @@ const ModifyPost = () => {
                 console.log(err);
             });
 
-    }, []);
+    }, [user.token, userId]);
 
-    console.log(isAdmin);
 
 
     // API call for post information
@@ -56,7 +55,6 @@ const ModifyPost = () => {
             .then((res) => {
 
                 setPostData(res.data);
-                console.log(res);
 
 
             })
@@ -64,7 +62,7 @@ const ModifyPost = () => {
                 console.log(err);
             });
 
-    }, [ModifyPost]);
+    }, [postId, user.token], );
 
 
     // Call API for modify post
@@ -115,7 +113,6 @@ const ModifyPost = () => {
             }
         })
             .then((res) => {
-                console.log(res);
                 navigate('/')
 
 
@@ -135,7 +132,7 @@ const ModifyPost = () => {
         <>
             <Banner/>
 
-            <main className="div-create-post">
+            <main className="div-create-post"   style={{padding: "55px 0"}}>
                 <div className="create-post" aria-label="Créer un post">
                     <label htmlFor="description" className="create-post-label">Modifier votre post :</label>
                     <img src={postData.imageUrl} alt="" style={{width: "100%", marginBottom: "30px"}}/>

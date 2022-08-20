@@ -2,32 +2,28 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Home from "./pages/Home";
 import SignUpForm from "./pages/SignUpForm";
 import SignInForm from "./pages/SignInForm";
-import {DataProvider} from "./context/UserContext";
-import {useState} from "react";
 import ModifyPost from "./pages/ModifyPost";
-import CreatePost from "./pages/CreatePost";
-import CreatePostt from "./pages/CreatePostt";
+import MyPost from "./pages/MyPost";
 
 
 const App = () => {
     // On crée notre variable pour useContext
 
-    const [currentUser, setCurrentUser] = useState("");
     return (// On passe ses paramètres à chaque composant
-        <DataProvider value={{currentUser, setCurrentUser}}>
-            {/*On crée nos différentes routes pour nos 3 pages*/}
+
+
+
             <BrowserRouter>
                 <Routes>
+
                     <Route path="/signin" element={<SignInForm/>}/>
                     <Route path="/signup" element={<SignUpForm/>}/>
                     <Route path="/" element={<Home/>}/>
-                    <Route path="/create-post" element={<CreatePostt/>}/>
                     <Route path="/product/:id" element={<ModifyPost/>}/>
-
+                    <Route path="/mypost" element={<MyPost/>}/>
 
                 </Routes>
             </BrowserRouter>
-        </DataProvider>
 
     );
 };

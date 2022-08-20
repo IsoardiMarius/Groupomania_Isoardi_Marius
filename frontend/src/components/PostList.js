@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import CardPost from "../components/CardPost";
-import PostCreate from "./PostCreate";
 import axios from "axios";
 import CreatePost from "../pages/CreatePost";
 
@@ -10,7 +9,7 @@ const PostList = () => {
 
 
 
-    // Call API pour récupérer tous les postes de la DB
+    // Call API pour récupérer tous les postes
     useEffect(() => {
         axios.get('http://localhost:4000/api/post', {
             headers: {
@@ -33,11 +32,11 @@ const PostList = () => {
     return (<main>
         <div className="post-list">
             {/*Redirection to create post*/}
-            <PostCreate/>
             <CreatePost setPosts={setPosts} posts={posts}/>
             {/*all post*/}
             <section>
-            {posts.slice().reverse().map((post, index) => (<CardPost key={index} post={post}/>))}
+                {/*On affiche les post dans le sens inverse(du plus récent au plus ancien)*/}
+            {posts.slice().reverse().map((post) => (<CardPost key={post._id} post={post}/>))}
             </section>
 
 

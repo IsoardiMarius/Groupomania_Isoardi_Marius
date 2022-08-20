@@ -16,8 +16,7 @@ const CardPost = ({post}) => {
 
     // Call api for userId
     useEffect(() => {
-
-
+        setLiked(post.usersLiked.includes(userId))
         axios({
             method: "get", url: "http://localhost:4000/api/auth", credentials: true,
 
@@ -31,7 +30,7 @@ const CardPost = ({post}) => {
         })
             .then((res) => {
                 setId(res.data._id);
-                setIsAdmin(res.data.isAdmin)
+                setIsAdmin(res.data.isAdmin);
 
 
             })
@@ -63,7 +62,6 @@ const CardPost = ({post}) => {
             .then((res) => {
 
                 setLiked(true);
-                console.log(res);
                 setNumberLike(numberLike + 1);
 
 
@@ -126,25 +124,29 @@ const CardPost = ({post}) => {
             <div className="card-logo">
 
                 {/*if user like post*/}
-                {liked && (<button className="card-post-button-like" aria-label="button for dislike"><i
+                {liked === true && (<button className="card-post-button-like" aria-label="button for dislike"><i
                     className="fa-regular fa-heart like" onClick={dislike}></i></button>)}
                 {/*/!*if user dislike post*!/*/}
-                {!liked && (<button className="card-post-button-like" aria-label="button for like"><i
+                {liked === false && (<button className="card-post-button-like" aria-label="button for like"><i
                     className="fa-regular fa-heart" onClick={like}></i></button>)}
 
-                <button className="card-post-button-like" aria-label="button for comment"><i
-                    className="fa-regular fa-comment"></i></button>
-                <button className="card-post-button-like" aria-label="button retweet"><i
-                    className="fa-solid fa-retweet "></i></button>
+                {/*<button className="card-post-button-like" aria-label="button for comment"><i*/}
+                {/*    className="fa-regular fa-comment"></i></button>*/}
+                {/*<button className="card-post-button-like" aria-label="button retweet"><i*/}
+                {/*    className="fa-solid fa-retweet "></i></button>*/}
 
-                {/*if post was created by user*/}
+
+                {/*if post was created by user or if user isAdmin*/}
                 {id === post.userId && (<button className="modify-button" onClick={modifyProduct}>Modifier</button>) ||
                 isAdmin && (<button className="modify-button" onClick={modifyProduct}>Modifier</button>)}
 
 
             </div>
+            {/*if post.userLiked.length === 0*/}
             {numberLike === 0 && (<p className="card-post-number-like">{numberLike} like</p>)}
+            {/*if post.userLiked.length === 1*/}
             {numberLike === 1 && (<p className="card-post-number-like">{numberLike} like</p>)}
+            {/*if post.userLiked.length > 1*/}
             {numberLike > 1 && (<p className="card-post-number-like">{numberLike} likes</p>)}
 
 

@@ -1,7 +1,6 @@
 import React, {useEffect, useState,} from 'react';
 import axios from "axios";
-import {useNavigate} from "react-router-dom";
-import Banner from "../components/Banner";
+
 
 
 
@@ -13,7 +12,6 @@ const CreatePost = (props) => {
     const [prenom, setPrenom] = useState('');
     const [id, setId] = useState('');
 
-    const navigate = useNavigate();
     const [postImgInput, setPostImgInput] = useState('');
     const [imgPostFile, setImgPostFile] = useState();
 
@@ -78,6 +76,7 @@ const CreatePost = (props) => {
                     setDescription('')
                     setPostImgInput('')
                     setImgPostFile('')
+
 
 
 

@@ -24,7 +24,7 @@ const Banner = () => {
     // On redirige vers la page ou les posts de l'utilisateur sont afficher
     const myPosts = (e) => {
         e.preventDefault()
-        navigate('/')
+        navigate('/mypost')
     }
 
 
