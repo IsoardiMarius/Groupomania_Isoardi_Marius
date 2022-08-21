@@ -1,6 +1,8 @@
 # GROUPOMANIA SOCIAL NETWORK
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).  
 
+ Pour téléchargez le repo sur votre machine taper la commande :  
+ git clone https://github.com/IsoardiMarius/Groupomania_Isoardi_Marius.git
 ## Dossier Backend
 
 
