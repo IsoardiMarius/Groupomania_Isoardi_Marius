@@ -2,7 +2,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Dossier Backend
-** **
+
 
 Comme son nom l'indique, ce dossier contient la partie serveur de notre application.
 
@@ -11,7 +11,6 @@ Comme son nom l'indique, ce dossier contient la partie serveur de notre applicat
 3. Puis lancez le serveur en tapant la commande : nodemon server. \
 Le serveur doit fonctionner sur http://localhost:4000/.
 ## Dossier Frontend
-** **
 
 Comme son nom l'indique, ce dossier contient la partie site de notre application.
 
@@ -21,7 +20,6 @@ Le serveur doit fonctionner sur http://localhost:3000/.
 
 ## Base de données
 
-** ** 
  On utilisera ici MongoDB
 
 Pour vous connecter, veuillez modifier dans le fichier backend/.env les variables :  
