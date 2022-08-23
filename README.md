@@ -32,7 +32,9 @@ Pour connecter votre propre base de donée, veuillez créer un fichier .env dans
 
   DATABASE_USERNAME = "Votre username MongoDB"
 
-  DATABASE_PASSWORD = "Votre password MongoDB"
+  DATABASE_PASSWORD = "Votre password MongoDB"  
+  
+  Autrement, veuillez télécharger les deux fichiers users.json et posts.json, et ensuite exécuter la commande [mongoimport] (https://www.mongodb.com/docs/database-tools/mongoimport/)
   
   
   
