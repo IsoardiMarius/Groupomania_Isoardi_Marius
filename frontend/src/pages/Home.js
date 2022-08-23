@@ -13,6 +13,9 @@ const Home = () => {
         user ?
         <div>
             <Banner/>
+            <div className="loadingbg">
+                <div className="loader"></div>
+            </div>
             <PostList/>
         </div>
             : <Navigate to="/signin" replace={true}/>

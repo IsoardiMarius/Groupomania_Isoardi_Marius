@@ -8,7 +8,6 @@ const helmet = require("helmet");
 const stuffRoutes = require('./routes/post.route');
 const userRoutes = require('./routes/user.route');
 
-
 // On se connecte à la base de donnée
 mongoose.connect(`mongodb+srv://${process.env.DATABASE_USERNAME}:${process.env.DATABASE_PASSWORD}@cluster0.cdw2fb2.mongodb.net/?retryWrites=true&w=majority`, {
     useNewUrlParser: true, useUnifiedTopology: true

@@ -9,7 +9,7 @@ const MyPost = () => {
     const userId = user.userId;
     const [posts, setPosts] = useState([]);
 
-    // Call API pour récupérer tous les postes de la DB
+    // Call API pour récupérer tous les postes
     useEffect(() => {
         axios.get('http://localhost:4000/api/post', {
             headers: {
@@ -35,9 +35,13 @@ const MyPost = () => {
     return (
         userPost.length > 0 ?
         <>
+            <div className="loadingbg">
+                <div className="loader"></div>
+            </div>
             <nav>
             <Banner/>
             </nav>
+
 
             <main style={{backgroundColor: "#f7f7fc", padding: "50px 0 150px 0"}}>
                     {userPost.slice().reverse().map((post, index) => (<CardPost key={index} post={post}/>))}
@@ -46,8 +50,15 @@ const MyPost = () => {
         </>
     :
             <>
+                <div className="loadingbg">
+                    <div className="loader"></div>
+                </div>
             <Banner/>
-                <p>Pas de poste</p>
+                <div className="div">
+                <div className="mypost-div">
+                <h2 className="mypost-text">Vous n'avez pas encore publié de poste, présentez vous à vos collègues pour faire plus ample connaissance !</h2>
+                </div>
+                </div>
             </>
     );
 };
