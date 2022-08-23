@@ -110,7 +110,7 @@ const CreatePost = (props) => {
                     <form onSubmit={(e) => Post(e)} encType="multipart/form-data">
                         <div className="create-post-redaction">
 
-                <textarea maxLength="500" className="create-post-input" rows="7" cols="5"
+                <textarea aria-label="Champ pour ajouter un description à votre poste" maxLength="500" className="create-post-input" rows="7" cols="5"
                           name="description"
                           placeholder="Commencer à rédiger un post" onChange={(e) => setDescription(e.target.value)}
                           value={description}/>

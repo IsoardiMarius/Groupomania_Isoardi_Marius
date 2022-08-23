@@ -97,20 +97,20 @@ return (
                 pour envoyer toutes les donnés à l'API*/}
             <form action="" onSubmit={handleLogin}>
                 {/*On écoute tous les champs*/}
-                <input type="text" placeholder="Nom" onChange={(e) => setNom(e.target.value)}
+                <input type="text" placeholder="Nom" aria-label="Veuillez renseigner votre nom" onChange={(e) => setNom(e.target.value)}
                        value={nom}/>
                 <br/>
-                <input type="text" placeholder="Prénom" onChange={(e) => setPrenom(e.target.value)}
+                <input type="text" placeholder="Prénom" aria-label="Veuillez renseigner votre prénom" onChange={(e) => setPrenom(e.target.value)}
                        value={prenom}/>
 
                 <br/>
 
-                <input type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)}
+                <input type="email" placeholder="Email" aria-label="Veuillez renseigner votre email" onChange={(e) => setEmail(e.target.value)}
                        value={email}/>
                 <br/>
-                <input type="password" placeholder="Mot de passe" onChange={(e) => setPassword(e.target.value)}
+                <input type="password" placeholder="Mot de passe" aria-label="Veuillez renseigner votre mot de passe" onChange={(e) => setPassword(e.target.value)}
                        value={password} />
-                <input type="password" placeholder="Confirmer votre mot de passe"
+                <input type="password" placeholder="Confirmer votre mot de passe" aria-label="Veuillez confirmer votre mot de passe"
                        onChange={(e) => setPasswordCheck(e.target.value)}
                        value={passwordCheck}/>
                 <br/>

@@ -63,9 +63,9 @@ const SignInForm = () => {
                 {/*On passe la fonction qui contrôle et envoie les données à l'api*/}
                 <form onSubmit={handleLogin}>
                     {/*On écoute les inputs*/}
-                    <input type="text" placeholder="Email" autoComplete="username" onChange={(e) => setEmail(e.target.value)} value={email}/>
+                    <input type="text" placeholder="Email" autoComplete="username" aria-label="Veuillez renseignez votre adresse email" onChange={(e) => setEmail(e.target.value)} value={email}/>
                     <br/>
-                    <input type="password" placeholder="Mot de passe" onChange={(e) => setPassword(e.target.value)}
+                    <input type="password" placeholder="Mot de passe" aria-label="Veuillez renseignez votre mot de passe" onChange={(e) => setPassword(e.target.value)}
                            value={password} autoComplete="current-password"/>
                     <br/>
                     <button type="submit" aria-label="Connexion"> SE CONNECTER</button>
